@@ -28,16 +28,16 @@ var app = {
   current_section: "home",
   switch_speed: 150, // ms
   load_section: function() {
-    $("section." + this.current_section).css("left", "0");
+    $("section." + this.current_section).css("display", "block").css("left", "0");
     this.check_section(this.current_section);
   },
   switch_section: function(section) {
     $("section." + this.current_section).animate({
       left: "-100%"
     }, this.switch_speed, function() {
-      $(this).css("left", "100%");
+      $(this).css("display", "none").css("left", "100%");
     });
-    $("section." + section).animate({
+    $("section." + section).css("display", "block").animate({
       left: "0%"
     }, this.switch_speed);
     this.current_section = section;
