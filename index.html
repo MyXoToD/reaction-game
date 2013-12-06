@@ -14,12 +14,36 @@
   <body>
     <div id="app">
       <section class="home">
-        <h1>Dot Tap</h1>
-        <button class="btn-play switch-section" data-section="play">Play now</button>
+        <div class="logo">
+          Tap<br />Rage
+        </div>
+        <nav>
+          <a href="#" class="btn-play switch-section" data-section="play">Play</a>
+          <a href="#" class="switch-section" data-section="highscores">Highscores</a>
+          <a href="#" class="switch-section" data-section="archievements">Archievements</a>
+          <a href="#" class="switch-section" data-section="settings">Settings</a>
+        </nav>
       </section>
 
       <section class="play">
-        Game
+        <header>
+          <div class="time">
+            Time left: <span>30</span>
+          </div>
+          <div class="score">
+            Score: <span>0</span>
+          </div>
+        </header>
+        <main class="game">
+
+        </main>
+        <footer>
+          <span class="btn-menu">Pause</span>
+        </footer>
+      </section>
+
+      <section class="gameover">
+        
       </section>
     </div>
   </body>
