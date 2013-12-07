@@ -1,0 +1,24 @@
+{
+  "version": "0.1.1",
+  "name": "Tap Rage",
+  "description": "Test your reaction while tapping on dots in 30 seconds",
+  "launch_path": "/",
+  "orientation": ["portrait","landscape-secondary"],
+  "fullscreen": "true",
+  "icons": {
+    "128": "/assets/images/icon-128.png"
+  },
+  "developer": {
+    "name": "Max Boll",
+    "url": "http://myxotod.de"
+  },
+  "locales": {
+    "de": {
+      "description": "Teste deine Reaktion indem du innerhalb von 30 Sekunden zufällig auftauchende Punkte antippst",
+      "developer": {
+        "url": "http://myxotod.de"
+      }
+    }
+  },
+  "default_locale": "en"
+}

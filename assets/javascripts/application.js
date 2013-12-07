@@ -6,8 +6,10 @@ var app = {
   initialize: function() {
     this.bind_events();
     this.load_section();
-    $("body").css("width", $(window).width() + "px");
-    $("body").css("overflow", "hidden");
+
+    if (this.is_installed()) {
+      $(".btn-install").hide();
+    }
   },
 
   bind_events: function() {
@@ -18,6 +20,42 @@ var app = {
     $(document).on("click", this.dots + ".active", function(e) {
       app.add_point();
     });
+
+    $(document).on("click", ".btn-install", function(e) {
+      app.install();
+      $(".btn-install").html("Installed!").fadeOut("slow");
+    });
+  },
+
+  /* ******************** **
+  ** ******************** **
+  ** **** FIREFOX OS **** **
+  ** ******************** **
+  ** ******************** */
+  app_url: "http://app.myxotod.de/manifest.webapp",
+  is_installed: function() {
+    var request = navigator.mozApps.checkInstalled(this.app_url);
+    request.onsuccess = function() {
+      if (request.result) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    request.onerror = function() {
+      console.log(this.error.message);
+      return false;
+    };
+  },
+  install: function() {
+    var request = navigator.mozApps.install(this.app_url);
+    request.onsuccess = function() {
+      return true;
+    };
+    request.onerror = function() {
+      console.log(this.error.name);
+      return false;
+    };
   },
 
   /* ******************** **
@@ -95,7 +133,8 @@ var app = {
   },
   add_point: function() {
     this.score++;
-    //this.play_sound();
+    this.play_sound();
+    this.vibrate();
     $("section.play header .score span").html(this.score);
     this.set_dot();
   },
@@ -119,6 +158,7 @@ var app = {
   play_sound: function() {
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', 'assets/sounds/tap.mp3');
+    audioElement.setAttribute('type', 'audio/mp3');
     audioElement.setAttribute('autoplay', 'autoplay');
 
     //$.get();
@@ -126,5 +166,10 @@ var app = {
     audioElement.addEventListener("load", function() {
       audioElement.play();
     }, true);
+  },
+  vibrate: function() {
+    if('vibrate' in navigator) {
+      navigator.vibrate(200);
+    }
   }
 };
